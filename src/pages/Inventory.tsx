@@ -105,12 +105,12 @@ export default function Inventory() {
     <div className="container-x py-8 sm:py-10">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-ink">Browse cars</h1>
-          <p className="mt-1 text-slate-500">{loading && page === 0 ? 'Searching…' : `${total} car${total === 1 ? '' : 's'} found`}</p>
+          <h1 className="text-3xl font-bold tracking-tight text-ink">Browse cars</h1>
+          <p className="mt-1 text-neutral-500">{loading && page === 0 ? 'Searching…' : `${total} car${total === 1 ? '' : 's'} found`}</p>
         </div>
         <div className="flex gap-2">
           <form className="relative flex-1 sm:w-72" onSubmit={(e) => { e.preventDefault(); set('q', q.trim()) }}>
-            <SearchIcon width={16} height={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+            <SearchIcon width={16} height={16} className="absolute left-3 top-1/2 -tranneutral-y-1/2 text-neutral-400" />
             <input className="input pl-9" placeholder="Search e.g. Hilux, Fit" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search cars" />
           </form>
           <select className="input w-auto" value={filters.sort} onChange={(e) => set('sort', e.target.value === 'newest' ? '' : e.target.value)} aria-label="Sort">
@@ -141,7 +141,7 @@ export default function Inventory() {
               {!loading && vehicles.length === 0 && (
                 <div className="card p-10 text-center">
                   <p className="font-semibold text-ink">No cars match your search</p>
-                  <p className="mt-1 text-sm text-slate-500">Try removing a filter, or ask us on WhatsApp. We can often source the car you want.</p>
+                  <p className="mt-1 text-sm text-neutral-500">Try removing a filter, or ask us on WhatsApp. We can often source the car you want.</p>
                   {active.length > 0 && <button onClick={clear} className="btn-outline mt-4">Clear filters</button>}
                 </div>
               )}
@@ -150,7 +150,7 @@ export default function Inventory() {
                   <button className="btn-dark" onClick={() => load(page + 1)}>Show more ({total - vehicles.length} left)</button>
                 </div>
               )}
-              {vehicles.length >= PAGE_SIZE && vehicles.length >= total && <p className="mt-8 text-center text-sm text-slate-400">You have seen all {total} cars.</p>}
+              {vehicles.length >= PAGE_SIZE && vehicles.length >= total && <p className="mt-8 text-center text-sm text-neutral-400">You have seen all {total} cars.</p>}
             </>
           )}
         </div>
@@ -160,12 +160,12 @@ export default function Inventory() {
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Filters">
           <div className="absolute inset-0 bg-black/40" onClick={() => setShowFilters(false)} />
           <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-white shadow-xl">
-            <div className="flex items-center justify-between border-b border-slate-200 p-4">
+            <div className="flex items-center justify-between border-b border-neutral-200 p-4">
               <h2 className="text-lg font-bold">Filters</h2>
-              <button className="rounded-lg p-2 hover:bg-slate-100" onClick={() => setShowFilters(false)} aria-label="Close filters"><CloseIcon /></button>
+              <button className="rounded-lg p-2 hover:bg-neutral-100" onClick={() => setShowFilters(false)} aria-label="Close filters"><CloseIcon /></button>
             </div>
             <div className="flex-1 overflow-y-auto p-4">{filterPanel}</div>
-            <div className="border-t border-slate-200 p-4"><button className="btn-primary w-full" onClick={() => setShowFilters(false)}>Show {total} cars</button></div>
+            <div className="border-t border-neutral-200 p-4"><button className="btn-primary w-full" onClick={() => setShowFilters(false)}>Show {total} cars</button></div>
           </div>
         </div>
       )}

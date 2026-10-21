@@ -32,14 +32,14 @@ export default function Settings() {
   const input = (key: 'name' | 'tagline' | 'phone' | 'whatsapp' | 'email' | 'address' | 'map_url', label: string, hint?: string, type = 'text') => (
     <label className="block"><span className="label">{label}</span>
       <input type={type} className="input" disabled={!admin} value={(f[key] as string | null) ?? ''} onChange={(e) => setF({ ...f, [key]: e.target.value })} />
-      {hint && <span className="mt-1 block text-xs text-slate-500">{hint}</span>}
+      {hint && <span className="mt-1 block text-xs text-neutral-500">{hint}</span>}
     </label>
   )
 
   return (
     <form onSubmit={onSubmit} className="max-w-3xl">
-      <h1 className="text-2xl font-extrabold text-ink">Dealership settings</h1>
-      {!admin && <p className="mt-2 rounded-lg bg-amber-50 p-3 text-sm text-amber-800">Only admins can change these settings.</p>}
+      <h1 className="text-2xl font-bold text-ink">Dealership settings</h1>
+      {!admin && <p className="mt-2 rounded-lg bg-neutral-100 p-3 text-sm text-neutral-700">Only admins can change these settings.</p>}
       <div className="card mt-6 grid gap-4 p-6 sm:grid-cols-2">
         {input('name', 'Dealership name')}
         {input('tagline', 'Tagline')}
@@ -50,7 +50,7 @@ export default function Settings() {
         <div className="sm:col-span-2">{input('map_url', 'Google Maps embed link (optional)', 'In Google Maps: Share > Embed a map > copy the src link. Leave empty to use the address.', 'url')}</div>
         <label className="block"><span className="label">ZiG per 1 USD (optional)</span>
           <input type="number" step="0.0001" min={0} className="input" disabled={!admin} value={f.zig} onChange={(e) => setF({ ...f, zig: e.target.value })} />
-          <span className="mt-1 block text-xs text-slate-500">Shows an approximate ZiG price on each car. Leave empty to hide it.</span>
+          <span className="mt-1 block text-xs text-neutral-500">Shows an approximate ZiG price on each car. Leave empty to hide it.</span>
         </label>
       </div>
       <div className="card mt-6 p-6">
@@ -66,7 +66,7 @@ export default function Settings() {
       {admin && (
         <div className="mt-6 flex items-center gap-4">
           <button className="btn-primary" disabled={busy}>{busy ? 'Saving…' : 'Save settings'}</button>
-          {msg && <p className={`text-sm ${msg.ok ? 'text-emerald-700' : 'text-red-700'}`}>{msg.text}</p>}
+          {msg && <p className={`text-sm ${msg.ok ? 'text-ink' : 'text-red-700'}`}>{msg.text}</p>}
         </div>
       )}
     </form>

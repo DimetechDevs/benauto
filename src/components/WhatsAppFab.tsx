@@ -11,7 +11,7 @@ export default function WhatsAppFab() {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-wa text-white shadow-lg shadow-green-900/20 transition hover:scale-105"
+      className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-ink text-white shadow-lg shadow-black/20 transition hover:bg-ink-soft"
       aria-label="Chat with us on WhatsApp"
     >
       <WhatsAppIcon width={28} height={28} />

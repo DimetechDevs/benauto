@@ -28,7 +28,7 @@ function PublicLayout() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      {!isConfigured && <div className="bg-amber-100 px-4 py-2 text-center text-sm text-amber-900">Database not connected yet: listings will appear once it is configured.</div>}
+      {!isConfigured && <div className="bg-neutral-100 px-4 py-2 text-center text-sm text-neutral-700">Database not connected yet: listings will appear once it is configured.</div>}
       <main className="flex-1"><Outlet /></main>
       <Footer />
       <WhatsAppFab />

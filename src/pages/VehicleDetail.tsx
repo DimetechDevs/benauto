@@ -45,7 +45,7 @@ export default function VehicleDetail() {
     return (
       <div className="container-x py-20 text-center">
         <h1 className="text-2xl font-bold text-ink">This car is no longer listed</h1>
-        <p className="mt-2 text-slate-500">It may have been sold. Have a look at what else we have in stock.</p>
+        <p className="mt-2 text-neutral-500">It may have been sold. Have a look at what else we have in stock.</p>
         <Link to="/inventory" className="btn-primary mt-6">Browse cars</Link>
       </div>
     )
@@ -72,22 +72,22 @@ export default function VehicleDetail() {
 <div className="card p-6">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-extrabold leading-tight text-ink">{title}</h1>
-          {v.variant && <p className="mt-0.5 text-slate-500">{v.variant}</p>}
+          <h1 className="text-2xl font-bold leading-tight text-ink">{title}</h1>
+          {v.variant && <p className="mt-0.5 text-neutral-500">{v.variant}</p>}
         </div>
         <StatusBadge v={v} />
       </div>
       <div className="mt-4">
-        {reduced && <p className="text-sm text-slate-400 line-through">{formatUsd(v.previous_price_usd)}</p>}
-        <p className="text-3xl font-extrabold text-ink">{formatUsd(v.price_usd)}</p>
-        <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        {reduced && <p className="text-sm text-neutral-400 line-through">{formatUsd(v.previous_price_usd)}</p>}
+        <p className="text-3xl font-bold text-ink">{formatUsd(v.price_usd)}</p>
+        <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-neutral-500">
           {zig && <span>≈ {zig}</span>}
           {v.price_negotiable && <span className="chip">Negotiable</span>}
         </div>
       </div>
       <div className="mt-5 grid gap-2">
         {sold ? (
-          <p className="rounded-xl bg-slate-100 p-3 text-center text-sm text-slate-600">This car has been sold. <Link to="/inventory" className="font-semibold text-ink underline">See similar cars</Link></p>
+          <p className="rounded-md bg-neutral-100 p-3 text-center text-sm text-neutral-600">This car has been sold. <Link to="/inventory" className="font-semibold text-ink underline">See similar cars</Link></p>
         ) : (
           <>
             {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-wa w-full text-base"><WhatsAppIcon width={18} height={18} /> WhatsApp about this car</a>}
@@ -118,7 +118,7 @@ export default function VehicleDetail() {
 
   return (
     <div className="container-x py-6 sm:py-8">
-      <Link to="/inventory" className="inline-flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-ink"><ChevronLeft width={16} height={16} /> Back to all cars</Link>
+      <Link to="/inventory" className="inline-flex items-center gap-1 text-sm font-medium text-neutral-600 hover:text-ink"><ChevronLeft width={16} height={16} /> Back to all cars</Link>
 
       <div className="mt-4 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
         <div className="min-w-0">
@@ -129,8 +129,8 @@ export default function VehicleDetail() {
             <h2 className="text-lg font-bold text-ink">Specifications</h2>
             <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3">
               {specs.filter(([, val]) => val).map(([k, val]) => (
-                <div key={k} className="border-b border-slate-100 pb-2">
-                  <dt className="text-xs uppercase tracking-wide text-slate-500">{k}</dt>
+                <div key={k} className="border-b border-neutral-100 pb-2">
+                  <dt className="text-xs uppercase tracking-wide text-neutral-500">{k}</dt>
                   <dd className="mt-0.5 font-semibold text-ink">{val}</dd>
                 </div>
               ))}
@@ -141,7 +141,7 @@ export default function VehicleDetail() {
             <div className="card mt-6 p-6">
               <h2 className="text-lg font-bold text-ink">Features</h2>
               <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                {v.features.map((f) => <li key={f} className="flex items-center gap-2 text-slate-700"><CheckIcon width={16} height={16} className="text-emerald-600" />{f}</li>)}
+                {v.features.map((f) => <li key={f} className="flex items-center gap-2 text-neutral-700"><CheckIcon width={16} height={16} className="text-ink" />{f}</li>)}
               </ul>
             </div>
           )}
@@ -149,7 +149,7 @@ export default function VehicleDetail() {
           {v.description && (
             <div className="card mt-6 p-6">
               <h2 className="text-lg font-bold text-ink">About this car</h2>
-              <p className="mt-3 whitespace-pre-line leading-relaxed text-slate-700">{v.description}</p>
+              <p className="mt-3 whitespace-pre-line leading-relaxed text-neutral-700">{v.description}</p>
             </div>
           )}
         </div>
@@ -159,9 +159,9 @@ export default function VehicleDetail() {
 
           {!sold && (
             <div className="card p-6">
-              <div className="grid grid-cols-3 gap-1 rounded-xl bg-slate-100 p-1 text-sm font-semibold" role="tablist">
+              <div className="grid grid-cols-3 gap-1 rounded-md bg-neutral-100 p-1 text-sm font-semibold" role="tablist">
                 {([['inquiry', 'Enquire'], ['test_drive', 'Test drive'], ['finance', 'Finance']] as [Tab, string][]).map(([k, l]) => (
-                  <button key={k} role="tab" aria-selected={tab === k} onClick={() => setTab(k)} className={`rounded-lg py-2 transition ${tab === k ? 'bg-white text-ink shadow-sm' : 'text-slate-600'}`}>{l}</button>
+                  <button key={k} role="tab" aria-selected={tab === k} onClick={() => setTab(k)} className={`rounded-lg py-2 transition ${tab === k ? 'bg-white text-ink shadow-sm' : 'text-neutral-600'}`}>{l}</button>
                 ))}
               </div>
               <div className="mt-5">
@@ -174,7 +174,7 @@ export default function VehicleDetail() {
                 {tab === 'finance' && (
                   <>
                     <FinanceCalculator compact price={v.price_usd} />
-                    <div className="mt-6 border-t border-slate-200 pt-6">
+                    <div className="mt-6 border-t border-neutral-200 pt-6">
                       <h3 className="mb-4 font-bold text-ink">Apply for finance</h3>
                       <LeadForm
                         compact type="finance" vehicleId={v.id} submitLabel="Send application" showMessage={false}
@@ -198,7 +198,7 @@ export default function VehicleDetail() {
 
       {similar.length > 0 && (
         <section className="mt-14">
-          <h2 className="text-2xl font-extrabold tracking-tight text-ink">You might also like</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-ink">You might also like</h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{similar.map((s) => <VehicleCard key={s.id} v={s} />)}</div>
         </section>
       )}

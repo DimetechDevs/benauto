@@ -13,7 +13,7 @@ export default function ResetPassword() {
   const [busy, setBusy] = useState(false)
 
   if (loading) return <Spinner />
-  if (!session) return <div className="container-x py-20 text-center text-slate-600">This reset link has expired. Request a new one from the staff sign-in page.</div>
+  if (!session) return <div className="container-x py-20 text-center text-neutral-600">This reset link has expired. Request a new one from the staff sign-in page.</div>
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()

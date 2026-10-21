@@ -214,8 +214,8 @@ export default function VehicleEditor() {
     <form onSubmit={onSubmit} className="pb-24">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <Link to="/admin/vehicles" className="text-sm text-slate-500 hover:text-ink">← All cars</Link>
-          <h1 className="mt-1 text-2xl font-extrabold text-ink">{isNew ? 'Add a car' : `${vehicle!.year} ${vehicle!.make} ${vehicle!.model}`}</h1>
+          <Link to="/admin/vehicles" className="text-sm text-neutral-500 hover:text-ink">← All cars</Link>
+          <h1 className="mt-1 text-2xl font-bold text-ink">{isNew ? 'Add a car' : `${vehicle!.year} ${vehicle!.make} ${vehicle!.model}`}</h1>
         </div>
         {!isNew && (
           <div className="flex gap-2">
@@ -231,9 +231,9 @@ export default function VehicleEditor() {
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
               {images.map((img, i) => (
                 <div key={img.id} draggable onDragStart={() => { dragFrom.current = i }} onDragOver={(e) => e.preventDefault()} onDrop={() => { if (dragFrom.current != null) move(dragFrom.current, i); dragFrom.current = null }}
-                  className="group relative aspect-[4/3] cursor-move overflow-hidden rounded-xl bg-slate-100 ring-1 ring-slate-200">
+                  className="group relative aspect-[4/3] cursor-move overflow-hidden rounded-md bg-neutral-100 ring-1 ring-neutral-200">
                   <img src={photoUrl(img.thumb_path || img.storage_path)!} alt="" className="h-full w-full object-cover" />
-                  {i === 0 && <span className="absolute left-2 top-2 rounded-full bg-brand px-2 py-0.5 text-[10px] font-bold text-ink">COVER</span>}
+                  {i === 0 && <span className="absolute left-2 top-2 rounded-sm bg-ink px-2 py-0.5 text-[10px] font-bold tracking-wider text-white">COVER</span>}
                   <div className="absolute inset-x-0 bottom-0 flex justify-between bg-gradient-to-t from-black/70 p-1.5">
                     <div className="flex gap-1">
                       <IconBtn label="Move left" onClick={() => move(i, i - 1)} disabled={i === 0}><ChevronLeft width={14} height={14} /></IconBtn>
@@ -245,19 +245,19 @@ export default function VehicleEditor() {
                 </div>
               ))}
               {pending.map((p, i) => (
-                <div key={p.key} className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-100 ring-1 ring-slate-200">
+                <div key={p.key} className="relative aspect-[4/3] overflow-hidden rounded-md bg-neutral-100 ring-1 ring-neutral-200">
                   <img src={p.preview} alt="" className="h-full w-full object-cover" />
-                  {i === 0 && images.length === 0 && <span className="absolute left-2 top-2 rounded-full bg-brand px-2 py-0.5 text-[10px] font-bold text-ink">COVER</span>}
+                  {i === 0 && images.length === 0 && <span className="absolute left-2 top-2 rounded-sm bg-ink px-2 py-0.5 text-[10px] font-bold tracking-wider text-white">COVER</span>}
                   <div className="absolute bottom-1.5 right-1.5"><IconBtn label="Remove photo" onClick={() => { URL.revokeObjectURL(p.preview); setPending((x) => x.filter((y) => y.key !== p.key)) }}><TrashIcon width={14} height={14} /></IconBtn></div>
                 </div>
               ))}
-              <label className="grid aspect-[4/3] cursor-pointer place-items-center rounded-xl border-2 border-dashed border-slate-300 text-center text-sm text-slate-500 hover:border-brand hover:text-ink">
+              <label className="grid aspect-[4/3] cursor-pointer place-items-center rounded-md border-2 border-dashed border-neutral-300 text-center text-sm text-neutral-500 hover:border-ink hover:text-ink">
                 <span className="flex flex-col items-center gap-1"><UploadIcon /> Add photos</span>
                 <input type="file" accept="image/*" multiple className="hidden" onChange={(e) => { void onPickFiles(e.target.files); e.target.value = '' }} disabled={!!uploading} />
               </label>
             </div>
             {uploading && <p className="mt-3 text-sm font-medium text-ink">{uploading}</p>}
-            {isNew && pending.length > 0 && <p className="mt-3 text-sm text-slate-500">These photos upload when you save the car.</p>}
+            {isNew && pending.length > 0 && <p className="mt-3 text-sm text-neutral-500">These photos upload when you save the car.</p>}
           </Section>
 
           <Section title="Car details">
@@ -287,7 +287,7 @@ export default function VehicleEditor() {
             <p className="label mt-5">Features</p>
             <div className="flex flex-wrap gap-2">
               {COMMON_FEATURES.map((f) => (
-                <button type="button" key={f} onClick={() => toggleFeature(f)} className={`rounded-full px-3 py-1.5 text-xs font-medium ring-1 ${featureList.includes(f) ? 'bg-ink text-white ring-ink' : 'bg-white text-slate-700 ring-slate-300'}`}>{f}</button>
+                <button type="button" key={f} onClick={() => toggleFeature(f)} className={`rounded-full px-3 py-1.5 text-xs font-medium ring-1 ${featureList.includes(f) ? 'bg-ink text-white ring-ink' : 'bg-white text-neutral-700 ring-neutral-300'}`}>{f}</button>
               ))}
             </div>
             <div className="mt-3"><Field label="All features (one per line)"><textarea rows={4} className="input" value={String(form.features)} onChange={(e) => set('features', e.target.value)} /></Field></div>
@@ -306,7 +306,7 @@ export default function VehicleEditor() {
           <Section title="Listing">
             <div className="space-y-4">
               <Field label="Status"><Select value={form.status} onChange={(v) => set('status', v)} options={STATUSES} /></Field>
-              <p className="-mt-2 text-xs text-slate-500">Drafts are hidden from the website. Sold cars stay visible with a SOLD badge.</p>
+              <p className="-mt-2 text-xs text-neutral-500">Drafts are hidden from the website. Sold cars stay visible with a SOLD badge.</p>
               <Field label="Price (USD)"><input type="number" min={0} step={1} className="input" value={String(form.price_usd)} onChange={(e) => set('price_usd', e.target.value)} placeholder="Leave empty for 'Call for price'" /></Field>
               <Field label="Was price (USD)"><input type="number" min={0} step={1} className="input" value={String(form.previous_price_usd)} onChange={(e) => set('previous_price_usd', e.target.value)} placeholder="Shows a REDUCED badge" /></Field>
               <Field label="Stock number"><input className="input" value={String(form.stock_number)} onChange={(e) => set('stock_number', e.target.value)} /></Field>
@@ -318,10 +318,10 @@ export default function VehicleEditor() {
         </aside>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 backdrop-blur">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-neutral-200 bg-white/95 backdrop-blur">
         <div className="container-x flex items-center justify-end gap-3 py-3">
           {error && <p className="mr-auto text-sm text-red-700" role="alert">{error}</p>}
-          {notice && !error && <p className="mr-auto text-sm text-emerald-700">{notice}</p>}
+          {notice && !error && <p className="mr-auto text-sm text-ink">{notice}</p>}
           <Link to="/admin/vehicles" className="btn-outline">Cancel</Link>
           <button className="btn-primary" disabled={saving || !!uploading}>{saving ? (uploading ?? 'Saving…') : isNew ? 'Save car' : 'Save changes'}</button>
         </div>
@@ -334,7 +334,7 @@ function Section({ title, hint, children }: { title: string; hint?: string; chil
   return (
     <section className="card p-5 sm:p-6">
       <h2 className="font-bold text-ink">{title}</h2>
-      {hint && <p className="mt-0.5 text-sm text-slate-500">{hint}</p>}
+      {hint && <p className="mt-0.5 text-sm text-neutral-500">{hint}</p>}
       <div className="mt-4">{children}</div>
     </section>
   )
@@ -351,7 +351,7 @@ function Select({ value, onChange, options, empty }: { value: string | boolean; 
   )
 }
 function Check({ label, checked, onChange }: { label: string; checked: boolean; onChange: (v: boolean) => void }) {
-  return <label className="flex items-center gap-2 text-sm text-slate-700"><input type="checkbox" className="h-4 w-4 accent-brand" checked={checked} onChange={(e) => onChange(e.target.checked)} />{label}</label>
+  return <label className="flex items-center gap-2 text-sm text-neutral-700"><input type="checkbox" className="h-4 w-4 accent-ink" checked={checked} onChange={(e) => onChange(e.target.checked)} />{label}</label>
 }
 function IconBtn({ label, onClick, disabled, children }: { label: string; onClick: () => void; disabled?: boolean; children: ReactNode }) {
   return <button type="button" aria-label={label} title={label} onClick={onClick} disabled={disabled} className="grid h-7 w-7 place-items-center rounded-md bg-white/90 text-ink hover:bg-white disabled:opacity-30">{children}</button>

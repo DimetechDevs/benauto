@@ -67,11 +67,11 @@ export default function LeadForm({
 
   if (state === 'done') {
     return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
-        <span className="mx-auto grid h-11 w-11 place-items-center rounded-full bg-emerald-600 text-white"><CheckIcon /></span>
-        <p className="mt-3 font-semibold text-emerald-900">Request sent</p>
-        <p className="mt-1 text-sm text-emerald-800">{successText}</p>
-        <button className="mt-4 text-sm font-medium text-emerald-900 underline" onClick={() => setState('idle')}>Send another</button>
+      <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6 text-center">
+        <span className="mx-auto grid h-11 w-11 place-items-center rounded-full bg-ink text-white"><CheckIcon /></span>
+        <p className="mt-3 font-semibold text-ink">Request sent</p>
+        <p className="mt-1 text-sm text-neutral-600">{successText}</p>
+        <button className="mt-4 text-sm font-medium text-ink underline" onClick={() => setState('idle')}>Send another</button>
       </div>
     )
   }
@@ -88,7 +88,7 @@ export default function LeadForm({
           <input id={`${type}-phone`} name="phone" required type="tel" inputMode="tel" autoComplete="tel" placeholder="077 123 4567" maxLength={30} className="input" />
         </div>
         <div className={compact ? '' : 'sm:col-span-2'}>
-          <label className="label" htmlFor={`${type}-email`}>Email <span className="font-normal text-slate-400">(optional)</span></label>
+          <label className="label" htmlFor={`${type}-email`}>Email <span className="font-normal text-neutral-400">(optional)</span></label>
           <input id={`${type}-email`} name="email" type="email" autoComplete="email" className="input" />
         </div>
         {showDate && (
@@ -115,8 +115,8 @@ export default function LeadForm({
       )}
       {/* Honeypot field, hidden from people */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
-      <label className="flex items-center gap-2 text-sm text-slate-600">
-        <input type="checkbox" name="prefers_whatsapp" defaultChecked className="h-4 w-4 rounded border-slate-300 accent-brand" />
+      <label className="flex items-center gap-2 text-sm text-neutral-600">
+        <input type="checkbox" name="prefers_whatsapp" defaultChecked className="h-4 w-4 rounded border-neutral-300 accent-ink" />
         Contact me on WhatsApp
       </label>
       {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">{error}</p>}

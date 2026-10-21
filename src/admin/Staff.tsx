@@ -39,14 +39,14 @@ export default function Staff() {
 
   return (
     <div className="max-w-3xl">
-      <h1 className="text-2xl font-extrabold text-ink">Staff</h1>
+      <h1 className="text-2xl font-bold text-ink">Staff</h1>
       {!rows ? <Spinner /> : (
-        <div className="card mt-6 divide-y divide-slate-100">
+        <div className="card mt-6 divide-y divide-neutral-100">
           {rows.map((s) => (
             <div key={s.user_id} className="flex flex-wrap items-center justify-between gap-3 p-4">
               <div>
                 <p className="font-semibold text-ink">{s.full_name} {s.is_admin && <span className="ml-1 rounded-full bg-ink px-2 py-0.5 text-[10px] font-bold text-white">ADMIN</span>}</p>
-                <p className="text-sm text-slate-500">{s.email}</p>
+                <p className="text-sm text-neutral-500">{s.email}</p>
               </div>
               {admin && s.user_id !== session?.user.id && (
                 <div className="flex gap-2">
@@ -61,16 +61,16 @@ export default function Staff() {
       {admin && (
         <form onSubmit={add} className="card mt-6 space-y-4 p-6">
           <h2 className="font-bold text-ink">Add a staff member</h2>
-          <p className="text-sm text-slate-600">First create their login in Supabase: <b>Authentication › Users › Add user</b> (tick “Auto confirm”). Then add them here.</p>
+          <p className="text-sm text-neutral-600">First create their login in Supabase: <b>Authentication › Users › Add user</b> (tick “Auto confirm”). Then add them here.</p>
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block"><span className="label">Their email</span><input type="email" required className="input" value={email} onChange={(e) => setEmail(e.target.value)} /></label>
             <label className="block"><span className="label">Full name</span><input required className="input" value={name} onChange={(e) => setName(e.target.value)} /></label>
           </div>
-          <label className="flex items-center gap-2 text-sm"><input type="checkbox" className="h-4 w-4 accent-brand" checked={makeAdmin} onChange={(e) => setMakeAdmin(e.target.checked)} /> Admin (can change settings and manage staff)</label>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" className="h-4 w-4 accent-ink" checked={makeAdmin} onChange={(e) => setMakeAdmin(e.target.checked)} /> Admin (can change settings and manage staff)</label>
           <button className="btn-dark">Add staff member</button>
         </form>
       )}
-      {msg && <p className={`mt-4 text-sm ${msg.ok ? 'text-emerald-700' : 'text-red-700'}`}>{msg.text}</p>}
+      {msg && <p className={`mt-4 text-sm ${msg.ok ? 'text-ink' : 'text-red-700'}`}>{msg.text}</p>}
     </div>
   )
 }

@@ -45,31 +45,31 @@ export default function Dashboard() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-extrabold text-ink">Hi {staff?.full_name.split(' ')[0]}</h1>
+        <h1 className="text-2xl font-bold text-ink">Hi {staff?.full_name.split(' ')[0]}</h1>
         <Link to="/admin/vehicles/new" className="btn-primary">+ Add a car</Link>
       </div>
       <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
         {tiles.map(([label, val, to]) => (
-          <Link key={label} to={to} className="card p-4 hover:border-brand">
-            <p className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</p>
-            <p className="mt-1 text-3xl font-extrabold text-ink">{val ?? '–'}</p>
+          <Link key={label} to={to} className="card p-4 hover:border-ink">
+            <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">{label}</p>
+            <p className="mt-1 text-3xl font-bold text-ink">{val ?? '–'}</p>
           </Link>
         ))}
       </div>
       <div className="card mt-8">
-        <div className="flex items-center justify-between border-b border-slate-100 p-4">
+        <div className="flex items-center justify-between border-b border-neutral-100 p-4">
           <h2 className="font-bold text-ink">Latest leads</h2>
-          <Link to="/admin/leads" className="text-sm font-semibold text-ink hover:text-brand-dark">View all →</Link>
+          <Link to="/admin/leads" className="text-sm font-semibold text-ink hover:text-brand">View all →</Link>
         </div>
-        {recent.length === 0 ? <p className="p-6 text-sm text-slate-500">No leads yet. They will appear here when customers send enquiries.</p> : (
-          <ul className="divide-y divide-slate-100">
+        {recent.length === 0 ? <p className="p-6 text-sm text-neutral-500">No leads yet. They will appear here when customers send enquiries.</p> : (
+          <ul className="divide-y divide-neutral-100">
             {recent.map((l) => (
               <li key={l.id} className="flex flex-wrap items-center justify-between gap-2 p-4 text-sm">
                 <div>
-                  <p className="font-semibold text-ink">{l.full_name} <span className="font-normal text-slate-500">· {LEAD_TYPES[l.type]}</span></p>
-                  <p className="text-slate-500">{l.vehicles ? `${l.vehicles.year} ${l.vehicles.make} ${l.vehicles.model}` : 'General'} · {formatDate(l.created_at)}</p>
+                  <p className="font-semibold text-ink">{l.full_name} <span className="font-normal text-neutral-500">· {LEAD_TYPES[l.type]}</span></p>
+                  <p className="text-neutral-500">{l.vehicles ? `${l.vehicles.year} ${l.vehicles.make} ${l.vehicles.model}` : 'General'} · {formatDate(l.created_at)}</p>
                 </div>
-                {l.status === 'new' && <span className="rounded-full bg-brand px-2 py-0.5 text-xs font-bold text-ink">NEW</span>}
+                {l.status === 'new' && <span className="rounded-sm bg-brand px-2 py-0.5 text-[11px] font-bold tracking-wider text-white">NEW</span>}
               </li>
             ))}
           </ul>

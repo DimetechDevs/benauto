@@ -28,15 +28,15 @@ export default function FinanceCalculator({ price, compact = false }: Props) {
         <Range id="fc-term" label="Repayment period" value={months} min={6} max={60} step={6} onChange={setMonths} display={`${months} months`} />
         <Range id="fc-rate" label="Interest rate (per year)" value={rate} min={0} max={35} step={0.5} onChange={setRate} display={`${rate}%`} />
       </div>
-      <div className="mt-6 rounded-2xl bg-ink p-5 text-white">
-        <p className="text-sm text-slate-300">Estimated monthly payment</p>
-        <p className="mt-1 text-3xl font-extrabold text-brand">{formatUsd(Math.round(monthly))}<span className="text-base font-medium text-slate-300"> /month</span></p>
-        <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-slate-300">
+      <div className="mt-6 rounded-lg bg-ink p-5 text-white">
+        <p className="text-sm text-neutral-300">Estimated monthly payment</p>
+        <p className="mt-1 text-3xl font-bold text-white">{formatUsd(Math.round(monthly))}<span className="text-base font-medium text-neutral-300"> /month</span></p>
+        <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-neutral-300">
           <p>Amount financed: <span className="font-semibold text-white">{formatUsd(loan)}</span></p>
           <p>Total cost: <span className="font-semibold text-white">{formatUsd(Math.round(total))}</span></p>
         </div>
       </div>
-      <p className="mt-3 text-xs text-slate-500">This is an estimate only. Final terms depend on the lender and your application.</p>
+      <p className="mt-3 text-xs text-neutral-500">This is an estimate only. Final terms depend on the lender and your application.</p>
     </div>
   )
 }
@@ -45,10 +45,10 @@ function Range(p: { id: string; label: string; value: number; min: number; max: 
   return (
     <div>
       <div className="mb-1.5 flex items-center justify-between">
-        <label className="text-sm font-medium text-slate-700" htmlFor={p.id}>{p.label}</label>
+        <label className="text-sm font-medium text-neutral-700" htmlFor={p.id}>{p.label}</label>
         <span className="text-sm font-semibold text-ink">{p.display}</span>
       </div>
-      <input id={p.id} type="range" min={p.min} max={p.max} step={p.step} value={p.value} onChange={(e) => p.onChange(Number(e.target.value))} className="w-full accent-brand" />
+      <input id={p.id} type="range" min={p.min} max={p.max} step={p.step} value={p.value} onChange={(e) => p.onChange(Number(e.target.value))} className="w-full accent-ink" />
     </div>
   )
 }

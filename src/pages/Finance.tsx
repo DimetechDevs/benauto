@@ -7,8 +7,8 @@ export default function Finance() {
   return (
     <div className="container-x py-10">
       <div className="max-w-2xl">
-        <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Car finance made simple</h1>
-        <p className="mt-3 text-lg text-slate-600">Work out what you can afford, then apply in two minutes. We work with lenders to find a plan that suits you.</p>
+        <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">Car finance made simple</h1>
+        <p className="mt-3 text-lg text-neutral-600">Work out what you can afford, then apply in two minutes. We work with lenders to find a plan that suits you.</p>
       </div>
       <div className="mt-10 grid gap-8 lg:grid-cols-2">
         <div>

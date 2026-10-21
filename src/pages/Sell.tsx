@@ -8,8 +8,8 @@ export default function Sell() {
     <div className="container-x py-10">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Sell or trade in your car</h1>
-          <p className="mt-3 text-lg text-slate-600">Tell us about your car and we will send you an offer. Use it as cash or put it towards your next car.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">Sell or trade in your car</h1>
+          <p className="mt-3 text-lg text-neutral-600">Tell us about your car and we will send you an offer. Use it as cash or put it towards your next car.</p>
           <ul className="mt-8 space-y-5">
             {[
               { icon: <ClockIcon />, t: 'Quick offer', d: 'Usually within one working day, by WhatsApp or phone.' },
@@ -17,8 +17,8 @@ export default function Sell() {
               { icon: <ShieldIcon />, t: 'No obligation', d: 'Not happy with the offer? No problem.' },
             ].map((x) => (
               <li key={x.t} className="flex gap-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand/15 text-brand-dark">{x.icon}</span>
-                <div><p className="font-bold text-ink">{x.t}</p><p className="text-sm text-slate-600">{x.d}</p></div>
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-neutral-100 text-ink">{x.icon}</span>
+                <div><p className="font-bold text-ink">{x.t}</p><p className="text-sm text-neutral-600">{x.d}</p></div>
               </li>
             ))}
           </ul>
@@ -39,7 +39,7 @@ export default function Sell() {
               </div>
             }
           />
-          <p className="mt-4 text-xs text-slate-500">Tip: after sending, WhatsApp us a few photos of the car for a faster, more accurate offer.</p>
+          <p className="mt-4 text-xs text-neutral-500">Tip: after sending, WhatsApp us a few photos of the car for a faster, more accurate offer.</p>
         </div>
       </div>
     </div>

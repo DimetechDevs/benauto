@@ -36,9 +36,9 @@ export default function Login() {
           <div><label className="label" htmlFor="l-email">Email</label><input id="l-email" type="email" required autoComplete="email" className="input" value={email} onChange={(e) => setEmail(e.target.value)} /></div>
           <div><label className="label" htmlFor="l-pass">Password</label><input id="l-pass" type="password" required autoComplete="current-password" className="input" value={password} onChange={(e) => setPassword(e.target.value)} /></div>
           {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">{error}</p>}
-          {info && <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-800">{info}</p>}
+          {info && <p className="rounded-lg bg-neutral-100 px-3 py-2 text-sm text-ink">{info}</p>}
           <button className="btn-dark w-full" disabled={busy}>{busy ? 'Please wait…' : 'Sign in'}</button>
-          <button type="button" onClick={forgot} className="w-full text-center text-sm text-slate-500 hover:text-ink" disabled={busy}>Forgot password?</button>
+          <button type="button" onClick={forgot} className="w-full text-center text-sm text-neutral-500 hover:text-ink" disabled={busy}>Forgot password?</button>
         </div>
       </form>
     </div>

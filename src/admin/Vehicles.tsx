@@ -7,10 +7,10 @@ import Spinner, { ErrorBox } from '../components/Spinner'
 import { CarIcon, SearchIcon } from '../components/Icons'
 
 const STATUS_STYLE: Record<VehicleStatus, string> = {
-  draft: 'bg-slate-200 text-slate-700',
-  available: 'bg-emerald-100 text-emerald-800',
-  reserved: 'bg-amber-100 text-amber-800',
-  sold: 'bg-red-100 text-red-700',
+  draft: 'bg-neutral-200 text-neutral-700',
+  available: 'bg-ink text-white',
+  reserved: 'bg-neutral-300 text-ink',
+  sold: 'bg-brand text-white',
 }
 
 export default function Vehicles() {
@@ -42,36 +42,36 @@ export default function Vehicles() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-extrabold text-ink">Cars</h1>
+        <h1 className="text-2xl font-bold text-ink">Cars</h1>
         <Link to="/admin/vehicles/new" className="btn-primary">+ Add a car</Link>
       </div>
       <div className="mt-5 flex flex-wrap gap-2">
         {(['', 'available', 'reserved', 'draft', 'sold'] as const).map((s) => (
-          <button key={s || 'all'} onClick={() => setParams(s ? { status: s } : {})} className={`rounded-full px-3.5 py-1.5 text-sm font-medium ${status === s ? 'bg-ink text-white' : 'bg-white text-slate-700 ring-1 ring-slate-200'}`}>
+          <button key={s || 'all'} onClick={() => setParams(s ? { status: s } : {})} className={`rounded-full px-3.5 py-1.5 text-sm font-medium ${status === s ? 'bg-ink text-white' : 'bg-white text-neutral-700 ring-1 ring-neutral-200'}`}>
             {s ? STATUSES[s] : 'All'}
           </button>
         ))}
         <div className="relative ml-auto w-full sm:w-64">
-          <SearchIcon width={16} height={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <SearchIcon width={16} height={16} className="absolute left-3 top-1/2 -tranneutral-y-1/2 text-neutral-400" />
           <input className="input pl-9" placeholder="Search make, model, stock no." value={q} onChange={(e) => setQ(e.target.value)} />
         </div>
       </div>
 
       {error ? <div className="mt-6"><ErrorBox message={error} onRetry={load} /></div> : !shown ? <Spinner /> : shown.length === 0 ? (
-        <div className="card mt-6 p-10 text-center text-slate-500">No cars here yet. <Link to="/admin/vehicles/new" className="font-semibold text-ink underline">Add your first car</Link>.</div>
+        <div className="card mt-6 p-10 text-center text-neutral-500">No cars here yet. <Link to="/admin/vehicles/new" className="font-semibold text-ink underline">Add your first car</Link>.</div>
       ) : (
-        <div className="card mt-6 divide-y divide-slate-100">
+        <div className="card mt-6 divide-y divide-neutral-100">
           {shown.map((v) => {
             const cover = [...(v.vehicle_images ?? [])].sort((a, b) => a.position - b.position)[0]
             return (
               <div key={v.id} className="flex flex-wrap items-center gap-4 p-4">
                 <Link to={`/admin/vehicles/${v.id}`} className="flex min-w-0 flex-1 items-center gap-4">
-                  <div className="grid h-16 w-24 shrink-0 place-items-center overflow-hidden rounded-lg bg-slate-100 text-slate-300">
+                  <div className="grid h-16 w-24 shrink-0 place-items-center overflow-hidden rounded-lg bg-neutral-100 text-neutral-300">
                     {cover ? <img src={photoUrl(cover.thumb_path || cover.storage_path)!} alt="" className="h-full w-full object-cover" loading="lazy" /> : <CarIcon />}
                   </div>
                   <div className="min-w-0">
-                    <p className="truncate font-bold text-ink">{vehicleTitle(v)} {v.variant && <span className="font-normal text-slate-500">{v.variant}</span>}</p>
-                    <p className="text-sm text-slate-500">{formatUsd(v.price_usd)} · {formatKm(v.mileage_km)}{v.stock_number ? ` · #${v.stock_number}` : ''} · {v.vehicle_images?.length ?? 0} photos{v.featured ? ' · ★ Featured' : ''}</p>
+                    <p className="truncate font-bold text-ink">{vehicleTitle(v)} {v.variant && <span className="font-normal text-neutral-500">{v.variant}</span>}</p>
+                    <p className="text-sm text-neutral-500">{formatUsd(v.price_usd)} · {formatKm(v.mileage_km)}{v.stock_number ? ` · #${v.stock_number}` : ''} · {v.vehicle_images?.length ?? 0} photos{v.featured ? ' · ★ Featured' : ''}</p>
                   </div>
                 </Link>
                 <div className="flex items-center gap-2">

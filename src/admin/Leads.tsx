@@ -8,7 +8,7 @@ import Spinner, { ErrorBox } from '../components/Spinner'
 import { PhoneIcon, WhatsAppIcon } from '../components/Icons'
 
 const STATUS_STYLE: Record<LeadStatus, string> = {
-  new: 'bg-brand text-ink', contacted: 'bg-sky-100 text-sky-800', won: 'bg-emerald-100 text-emerald-800', lost: 'bg-slate-200 text-slate-600',
+  new: 'bg-brand text-white', contacted: 'bg-neutral-300 text-ink', won: 'bg-ink text-white', lost: 'bg-neutral-100 text-neutral-500',
 }
 const DETAIL_LABELS: Record<string, string> = {
   deposit_usd: 'Deposit', monthly_income_usd: 'Monthly income', employer: 'Employer', budget_usd: 'Budget', term_months: 'Term',
@@ -54,7 +54,7 @@ export default function Leads() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold text-ink">Leads</h1>
+      <h1 className="text-2xl font-bold text-ink">Leads</h1>
       <div className="mt-5 flex flex-wrap gap-2">
         <select className="input w-auto" value={status} onChange={(e) => setParam('status', e.target.value)} aria-label="Status">
           <option value="">All statuses</option>{Object.entries(LEAD_STATUSES).map(([k, l]) => <option key={k} value={k}>{l}</option>)}
@@ -65,9 +65,9 @@ export default function Leads() {
       </div>
 
       {error ? <div className="mt-6"><ErrorBox message={error} onRetry={load} /></div> : !rows ? <Spinner /> : rows.length === 0 ? (
-        <div className="card mt-6 p-10 text-center text-slate-500">No leads match these filters.</div>
+        <div className="card mt-6 p-10 text-center text-neutral-500">No leads match these filters.</div>
       ) : (
-        <div className="card mt-6 divide-y divide-slate-100">
+        <div className="card mt-6 divide-y divide-neutral-100">
           {rows.map((l) => {
             const carName = l.vehicles ? `${l.vehicles.year} ${l.vehicles.make} ${l.vehicles.model}` : null
             const wa = whatsappLink(l.phone, `Hi ${l.full_name.split(' ')[0]}, thanks for your ${LEAD_TYPES[l.type].toLowerCase()} request${carName ? ` about the ${carName}` : ''}.`)
@@ -76,19 +76,19 @@ export default function Leads() {
               <div key={l.id} className="p-4">
                 <button className="flex w-full flex-wrap items-center justify-between gap-2 text-left" onClick={() => setOpen(isOpen ? null : l.id)} aria-expanded={isOpen}>
                   <div className="min-w-0">
-                    <p className="font-semibold text-ink">{l.full_name} <span className="font-normal text-slate-500">· {LEAD_TYPES[l.type]}{carName ? ` · ${carName}` : ''}</span></p>
-                    <p className="text-sm text-slate-500">{l.phone} · {formatDate(l.created_at)}</p>
+                    <p className="font-semibold text-ink">{l.full_name} <span className="font-normal text-neutral-500">· {LEAD_TYPES[l.type]}{carName ? ` · ${carName}` : ''}</span></p>
+                    <p className="text-sm text-neutral-500">{l.phone} · {formatDate(l.created_at)}</p>
                   </div>
                   <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${STATUS_STYLE[l.status]}`}>{LEAD_STATUSES[l.status]}</span>
                 </button>
                 {isOpen && (
-                  <div className="mt-4 grid gap-4 rounded-xl bg-slate-50 p-4 md:grid-cols-2">
+                  <div className="mt-4 grid gap-4 rounded-md bg-neutral-50 p-4 md:grid-cols-2">
                     <div className="space-y-2 text-sm">
-                      {l.email && <p><span className="text-slate-500">Email:</span> <a className="font-medium text-ink underline" href={`mailto:${l.email}`}>{l.email}</a></p>}
-                      <p><span className="text-slate-500">Prefers WhatsApp:</span> {l.prefers_whatsapp ? 'Yes' : 'No'}</p>
-                      {l.preferred_date && <p><span className="text-slate-500">Test drive:</span> {new Date(l.preferred_date + 'T00:00').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}{l.preferred_time ? `, ${l.preferred_time}` : ''}</p>}
-                      {Object.entries(l.details ?? {}).map(([k, v]) => <p key={k}><span className="text-slate-500">{DETAIL_LABELS[k] ?? k}:</span> {detailValue(k, v)}</p>)}
-                      {l.message && <p className="whitespace-pre-line rounded-lg bg-white p-3 text-slate-700 ring-1 ring-slate-200">{l.message}</p>}
+                      {l.email && <p><span className="text-neutral-500">Email:</span> <a className="font-medium text-ink underline" href={`mailto:${l.email}`}>{l.email}</a></p>}
+                      <p><span className="text-neutral-500">Prefers WhatsApp:</span> {l.prefers_whatsapp ? 'Yes' : 'No'}</p>
+                      {l.preferred_date && <p><span className="text-neutral-500">Test drive:</span> {new Date(l.preferred_date + 'T00:00').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}{l.preferred_time ? `, ${l.preferred_time}` : ''}</p>}
+                      {Object.entries(l.details ?? {}).map(([k, v]) => <p key={k}><span className="text-neutral-500">{DETAIL_LABELS[k] ?? k}:</span> {detailValue(k, v)}</p>)}
+                      {l.message && <p className="whitespace-pre-line rounded-lg bg-white p-3 text-neutral-700 ring-1 ring-neutral-200">{l.message}</p>}
                       {l.vehicles && <p><Link className="font-medium text-ink underline" to={`/admin/vehicles/${l.vehicles.id}`}>Open car in admin</Link></p>}
                       <div className="flex flex-wrap gap-2 pt-2">
                         {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-wa btn-sm"><WhatsAppIcon width={14} height={14} /> WhatsApp</a>}

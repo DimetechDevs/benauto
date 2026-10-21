@@ -9,11 +9,11 @@ export default function Footer() {
   const wa = whatsappLink(settings.whatsapp, `Hi ${settings.name}, I'd like some help finding a car.`)
   const hours = orderedHours(settings.opening_hours)
   return (
-    <footer className="mt-20 bg-ink text-slate-300">
+    <footer className="mt-20 bg-ink text-neutral-300">
       <div className="container-x grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-1">
           <Logo light />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-neutral-400">
             {settings.tagline || 'Quality used and imported cars in Zimbabwe.'} Honest prices in USD, finance options and friendly service.
           </p>
         </div>
@@ -40,17 +40,17 @@ export default function Footer() {
           <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Opening hours</h3>
           {hours.length ? (
             <ul className="mt-4 space-y-1.5 text-sm">
-              {hours.map(([d, h]) => <li key={d} className="flex justify-between gap-4"><span>{d}</span><span className="text-slate-400">{h}</span></li>)}
+              {hours.map(([d, h]) => <li key={d} className="flex justify-between gap-4"><span>{d}</span><span className="text-neutral-400">{h}</span></li>)}
             </ul>
           ) : (
-            <p className="mt-4 flex gap-2 text-sm text-slate-400"><ClockIcon width={16} height={16} className="mt-0.5" />Call or WhatsApp us for viewing times.</p>
+            <p className="mt-4 flex gap-2 text-sm text-neutral-400"><ClockIcon width={16} height={16} className="mt-0.5" />Call or WhatsApp us for viewing times.</p>
           )}
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-x flex flex-col items-center justify-between gap-2 py-5 text-xs text-slate-500 sm:flex-row">
+        <div className="container-x flex flex-col items-center justify-between gap-2 py-5 text-xs text-neutral-500 sm:flex-row">
           <p>© {new Date().getFullYear()} {settings.name}. All rights reserved.</p>
-          <p>Prices in USD. Vehicles subject to prior sale. <Link to="/admin" className="hover:text-slate-300">Staff login</Link></p>
+          <p>Prices in USD. Vehicles subject to prior sale. <Link to="/admin" className="hover:text-neutral-300">Staff login</Link></p>
         </div>
       </div>
     </footer>
